@@ -1,4 +1,5 @@
 using Microsoft.EntityFrameworkCore;
+using Vega.Domain.Models;
 
 namespace Vega.Data.Context
 {
@@ -7,5 +8,7 @@ namespace Vega.Data.Context
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
             : base(options)
         {}
+        
+        public DbSet<Make> Makes { get; set; }
     }
 }
