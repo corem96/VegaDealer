@@ -24,10 +24,6 @@
     </ItemGroup>
 
     <ItemGroup>
-      <Folder Include="Controllers" />
-    </ItemGroup>
-
-    <ItemGroup>
       <ProjectReference Include="..\Vega.Common\Vega.Common.csproj" />
       <ProjectReference Include="..\Vega.Data\Vega.Data.csproj" />
       <ProjectReference Include="..\Vega.Domain\Vega.Domain.csproj" />
