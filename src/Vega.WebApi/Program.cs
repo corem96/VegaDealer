@@ -18,7 +18,14 @@ namespace Vega.WebApi
         }
 
         public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
-            WebHost.CreateDefaultBuilder(args)
+            WebHost.CreateDefaultBuilder()
+//                .ConfigureAppConfiguration((context, config) =>
+//                {
+//                    config.SetBasePath(Directory.GetCurrentDirectory())
+////                        .AddJsonFile("config.json", true)
+//                        .AddEnvironmentVariables();
+//                })
+                .UseSetting("DesignTime", "true")
                 .UseStartup<Startup>();
     }
 }

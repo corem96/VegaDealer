@@ -32,15 +32,26 @@ namespace Vega.WebApi.Config
     {
         public ApplicationDbContext CreateDbContext(string[] args)
         {
-            IConfigurationRoot configuration = new ConfigurationBuilder()
-                .SetBasePath(Directory.GetCurrentDirectory())
-                .AddJsonFile("appsettings.json")
-                .Build();
-
-            var builder = new DbContextOptionsBuilder<ApplicationDbContext>();
-            builder.UseSqlServer(configuration.GetConnectionString("Default"));
-            
-            return new ApplicationDbContext(builder.Options);
+            // Get DbContext from DI system
+            var resolver = new DependencyResolver
+            {
+                CurrentDirectory = Path.Combine(Directory.GetCurrentDirectory(), "../Vega.WebApi")
+            };
+        
+            return resolver.ServiceProvider.GetService(typeof(ApplicationDbContext)) as ApplicationDbContext;
         }
+
+//        public ApplicationDbContext CreateDbContext(string[] args)
+//        {
+//            var configuration = new ConfigurationBuilder()
+//                .SetBasePath(Directory.GetCurrentDirectory())
+//                .AddJsonFile("appsettings.json")
+//                .Build();
+//
+//            var builder = new DbContextOptionsBuilder<ApplicationDbContext>();
+//            builder.UseSqlServer(configuration.GetConnectionString("Default"));
+//            
+//            return new ApplicationDbContext(builder.Options);
+//        }
     }
 }
