@@ -40,18 +40,5 @@ namespace Vega.WebApi.Config
         
             return resolver.ServiceProvider.GetService(typeof(ApplicationDbContext)) as ApplicationDbContext;
         }
-
-//        public ApplicationDbContext CreateDbContext(string[] args)
-//        {
-//            var configuration = new ConfigurationBuilder()
-//                .SetBasePath(Directory.GetCurrentDirectory())
-//                .AddJsonFile("appsettings.json")
-//                .Build();
-//
-//            var builder = new DbContextOptionsBuilder<ApplicationDbContext>();
-//            builder.UseSqlServer(configuration.GetConnectionString("Default"));
-//            
-//            return new ApplicationDbContext(builder.Options);
-//        }
     }
 }

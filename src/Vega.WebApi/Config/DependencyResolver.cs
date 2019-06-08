@@ -34,9 +34,11 @@ namespace Vega.WebApi.Config
             services.AddTransient(provider =>
             {
                 var configService = provider.GetService<IConfigurationService>();
-                var connectionString = configService.GetConfiguration().GetConnectionString(nameof(ApplicationDbContext));
+                var connectionString = configService.GetConfiguration()
+                    .GetConnectionString("Default");
                 var optionsBuilder = new DbContextOptionsBuilder<ApplicationDbContext>();
-                optionsBuilder.UseSqlServer(connectionString, builder => builder.MigrationsAssembly("Vega.Data"));
+                optionsBuilder.UseSqlServer(connectionString,
+                    builder => builder.MigrationsAssembly("Vega.Data"));
 
                 return new ApplicationDbContext(optionsBuilder.Options);
             });

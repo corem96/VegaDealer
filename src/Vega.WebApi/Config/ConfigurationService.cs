@@ -20,8 +20,8 @@ namespace Vega.WebApi.Config
             
             return new ConfigurationBuilder()
                 .SetBasePath(CurrentDirectory)
-                .AddJsonFile("appsetings.json", false, true)
-                .AddJsonFile($"appsetings.{_environmentService.EnvironmentName}.json", true)
+                .AddJsonFile("appsettings.json", false, true)
+                .AddJsonFile($"appsettings.{_environmentService.EnvironmentName}.json", true)
                 .AddEnvironmentVariables()
                 .Build();
         }

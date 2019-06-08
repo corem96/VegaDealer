@@ -1,4 +1,4 @@
-using System.Collections;
+using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using AutoMapper;
@@ -10,6 +10,8 @@ using Vega.WebApi.Controllers.Resources;
 
 namespace Vega.WebApi.Controllers
 {
+    [Route("api/makes")]
+    [ApiController]
     public class MakesController : Controller
     {
         private readonly ApplicationDbContext _context;
@@ -20,10 +22,18 @@ namespace Vega.WebApi.Controllers
             _context = context;
             _mapper = mapper;
         }
+
+        [HttpGet("extra")]
+        public IActionResult GetExtra()
+        {
+            return Ok();
+        }
         
-        [HttpGet("/api/makes")]
+        [HttpGet]
         public async Task<IEnumerable<MakeResource>> GetMakes()
         {
+            if (!ModelState.IsValid)
+                Console.WriteLine(ModelState.IsValid);
             var makes = await _context.Makes.Include(m => m.Models)
                 .ToListAsync();
 

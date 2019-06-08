@@ -9,7 +9,8 @@ namespace Vega.WebApi.Config
 
         public EnvironmentService()
         {
-            EnvironmentName = Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT") ?? "Production";
+            EnvironmentName = Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT")
+                              ?? "Production";
         }
     }
 }
